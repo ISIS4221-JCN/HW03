@@ -17,6 +17,6 @@ Then, install `docker-compose`:
 
 Then execute the bash command:
 
-  $ docker-compose up
+    $ docker-compose up
 
 The console will output the address with the token that is used to connect a browser to Jupyter. To persist data, a volume is set to bind the main directory of this repository to `/tf` inside the container. 
