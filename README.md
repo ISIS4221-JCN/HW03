@@ -1,5 +1,20 @@
 # Natural Language Processing: HW03
 
+# Natural Language Processing - HomeWork 02
+This repository gathers the notebooks developed to answer the third task of
+ISIS4221-Natural Language Processing 2021-10.
+
+The instructions are available in _HW03-ISIS4221.pdf_.
+
+## Dataset
+
+## Developers
+* Juan David García Hernández (jd.garciah@uniandes.edu.co)
+* Nicolás Rocha Pacheco (n.rocha11@uniandes.edu.co)
+* César Daniel Garrido Urbano (cd.garrido@uniandes.edu.co)
+
+## Contents
+
 ## Docker
 Docker will be used in order to have an efficent and safe interaction with the GPU. In order to run the docker development server make sure to install `docker` and `docker-compose`. To install `docker` on Ubuntu:
 
@@ -19,4 +34,4 @@ Then execute the bash command:
 
     $ docker-compose up
 
-The console will output the address with the token that is used to connect a browser to Jupyter. To persist data, a volume is set to bind the main directory of this repository to `/tf` inside the container. 
+The console will output the address with the token that is used to connect a browser to Jupyter. To persist data, a volume is set to bind the main directory of this repository to `/tf` inside the container.
