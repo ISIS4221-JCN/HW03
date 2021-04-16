@@ -1,5 +1,3 @@
-# Natural Language Processing: HW03
-
 # Natural Language Processing - HomeWork 02
 This repository gathers the notebooks developed to answer the third task of
 ISIS4221-Natural Language Processing 2021-10.
