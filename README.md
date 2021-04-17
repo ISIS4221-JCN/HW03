@@ -23,7 +23,17 @@ Docker will be used in order to have an efficent and safe interaction with the G
     $ sudo apt-get update
     $ sudo apt-get install docker-ce docker-ce-cli containerd.io
 
-Then, install `docker-compose`:
+The previous commands come from the Ubuntu [Docker documentation](https://docs.docker.com/install/linux/docker-ce/ubuntu/). If you are using another OS, please check the documentation for your OS. If you want to run Docker without any root permissions (without sudo), execute:
+
+    $ sudo groupadd docker
+    $ sudo usermod -aG docker $USER
+    $ newgrp docker
+
+As the installation commands, those commands come from Ubuntu [Docker documentation](https://docs.docker.com/install/linux/linux-postinstall/). We invite you to check your OS documentation if you are not using Ubuntu. We also encourage you to check the documentation if any error shows up during the installation process. To test if Docker was installed successfully do:
+
+    $ docker run hello-world
+
+If the previous command shows a Hello World! on the console output, Docker was installed succesfully. Add `sudo` if you are still using root permisions with Docker. Then, install `docker-compose`:
 
     $ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     $ sudo chmod +x /usr/local/bin/docker-compose
