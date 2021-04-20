@@ -38,7 +38,7 @@ If the previous command shows a Hello World! on the console output, Docker was i
     $ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     $ sudo chmod +x /usr/local/bin/docker-compose
 
-Then execute the bash command:
+In order to use the GPU with Docker, make sure to install both the Nvidia drivers (`nvidia-driver-XXX`) and the Nvidia container runtime (`nvidia-container-runtime`). Once you are sure that both the Nvidia driver and the Nvidia container runtime are installed execute the bash command:
 
     $ docker-compose up
 
