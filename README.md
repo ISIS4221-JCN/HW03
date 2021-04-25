@@ -6,6 +6,8 @@ The instructions are available in _HW03-ISIS4221.pdf_.
 
 ## Dataset
 
+In this task, the [Simpsons dataset](https://www.kaggle.com/pierremegret/dialogue-lines-of-the-simpsons) and [Friends dataset](https://www.kaggle.com/blessondensil294/friends-tv-series-screenplay-script) are used to test different embeddings and to train classification models. This datasets should be downloaded and moved into the `data/raw` directory. After running the _HW03_Preprocessing.ipynb notebook_ the preprocessed datasets can be found in the `data/simpsons` and `data/friends` directories.
+
 ## Developers
 * Juan David García Hernández (jd.garciah@uniandes.edu.co)
 * Nicolás Rocha Pacheco (n.rocha11@uniandes.edu.co)
