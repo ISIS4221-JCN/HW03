@@ -4,3 +4,5 @@ data/*
 *.pkl
 *.npy
 *.dict
+resources/checkpoints/*
+resources/embeddings/*
