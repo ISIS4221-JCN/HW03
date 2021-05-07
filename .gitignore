@@ -4,5 +4,6 @@ data/*
 *.pkl
 *.npy
 *.dict
-resources/checkpoints/*
+results/friends/*
+results/simpson/*
 resources/embeddings/*
