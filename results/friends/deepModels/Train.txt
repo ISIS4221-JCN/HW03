@@ -1,0 +1,17 @@
+\begin{table}
+\centering
+\caption{Friends deepModels Train metrics per class.}
+\label{friends_Train_deepModels}
+\begin{tabular}{llrrrr}
+\toprule
+{} & Character &  Precision &  Recall &  F1-score &  Support \\
+\midrule
+\textbf{0} &    Monica &       0.24 &    0.03 &      0.05 &     3366 \\
+\textbf{1} &      Joey &       0.28 &    0.09 &      0.14 &     3315 \\
+\textbf{2} &  Chandler &       0.23 &    0.25 &      0.24 &     3593 \\
+\textbf{3} &    Phoebe &       0.52 &    0.00 &      0.01 &     3029 \\
+\textbf{4} &      Ross &       0.22 &    0.73 &      0.34 &     4084 \\
+\textbf{5} &    Rachel &       0.21 &    0.14 &      0.17 &     3784 \\
+\bottomrule
+\end{tabular}
+\end{table}

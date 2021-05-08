@@ -1,0 +1,15 @@
+\begin{table}
+\centering
+\caption{Simpson deepModels Test metrics per class.}
+\label{simpson_Test_deepModels}
+\begin{tabular}{llrrrr}
+\toprule
+{} & Character &  Precision &  Recall &  F1-score &  Support \\
+\midrule
+\textbf{0} &      Lisa &       0.32 &    0.36 &      0.33 &     1151 \\
+\textbf{1} &      Bart &       0.62 &    0.41 &      0.50 &     2351 \\
+\textbf{2} &     Homer &       0.29 &    0.40 &      0.33 &      850 \\
+\textbf{3} &     Marge &       0.39 &    0.49 &      0.43 &     1106 \\
+\bottomrule
+\end{tabular}
+\end{table}

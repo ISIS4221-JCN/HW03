@@ -1,0 +1,17 @@
+\begin{table}
+\centering
+\caption{Friends deepModels Validation metrics per class.}
+\label{friends_Validation_deepModels}
+\begin{tabular}{llrrrr}
+\toprule
+{} & Character &  Precision &  Recall &  F1-score &  Support \\
+\midrule
+\textbf{0} &    Monica &       0.24 &    0.03 &      0.06 &      702 \\
+\textbf{1} &      Joey &       0.25 &    0.08 &      0.12 &      729 \\
+\textbf{2} &  Chandler &       0.26 &    0.27 &      0.26 &      796 \\
+\textbf{3} &    Phoebe &       0.25 &    0.00 &      0.00 &      606 \\
+\textbf{4} &      Ross &       0.23 &    0.73 &      0.35 &      901 \\
+\textbf{5} &    Rachel &       0.18 &    0.12 &      0.14 &      756 \\
+\bottomrule
+\end{tabular}
+\end{table}

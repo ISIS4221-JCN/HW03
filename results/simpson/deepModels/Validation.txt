@@ -1,0 +1,15 @@
+\begin{table}
+\centering
+\caption{Simpson deepModels Validation metrics per class.}
+\label{simpson_Validation_deepModels}
+\begin{tabular}{llrrrr}
+\toprule
+{} & Character &  Precision &  Recall &  F1-score &  Support \\
+\midrule
+\textbf{0} &      Lisa &       0.26 &    0.57 &      0.36 &     1143 \\
+\textbf{1} &      Bart &       0.69 &    0.00 &      0.01 &     2353 \\
+\textbf{2} &     Homer &       0.00 &    0.00 &      0.00 &      850 \\
+\textbf{3} &     Marge &       0.26 &    0.70 &      0.38 &     1116 \\
+\bottomrule
+\end{tabular}
+\end{table}
