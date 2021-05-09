@@ -6,10 +6,10 @@
 \toprule
 {} & Character &  Precision &  Recall &  F1-score &  Support \\
 \midrule
-\textbf{0} &      Lisa &       0.26 &    0.58 &      0.36 &     5474 \\
-\textbf{1} &      Bart &       0.81 &    0.00 &      0.00 &    11198 \\
+\textbf{0} &      Lisa &       1.00 &    0.00 &      0.00 &     5474 \\
+\textbf{1} &      Bart &       0.45 &    0.97 &      0.61 &    11198 \\
 \textbf{2} &     Homer &       0.00 &    0.00 &      0.00 &     4094 \\
-\textbf{3} &     Marge &       0.28 &    0.71 &      0.40 &     5630 \\
+\textbf{3} &     Marge &       0.39 &    0.14 &      0.21 &     5630 \\
 \bottomrule
 \end{tabular}
 \end{table}
