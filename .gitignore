@@ -4,6 +4,6 @@ data/*
 *.pkl
 *.npy
 *.dict
-results/friends/*
-results/simpson/*
+results/friends/deepModels/checkpoints/*
+results/simpson/deepModels/checkpoints/*
 resources/embeddings/*

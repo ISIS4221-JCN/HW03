@@ -1,5 +1,6 @@
 \section{Classification Models (Word2Vec Embeddings)}
-Para el proceso de clasificación de cada uno de los diálogos, se procede a diseñar cuatro tipos de modelos, con arquitecturas diferentes. Esto con el fin de hacer una comparación más detallada de los resultados obtenidos con cada uno. A continuación, se describen los cuatro modelos propuestos
+\label{sec:deepModels}
+Para el proceso de clasificación de cada uno de los diálogos, se procede a diseñar cuatro tipos de modelos, con arquitecturas diferentes. Esto con el fin de hacer una comparación más detallada de los resultados obtenidos con cada uno. A continuación, se describen los cuatro modelos propuestos.
 
 \subsection{Modelos}
 \subsubsection{Baseline model}
@@ -26,7 +27,7 @@ Al igual que en modelos futuros, el número de neuronas de la penúltima capa es
 Donde $em\_size$ corresponde al tamaño del \textit{embedding} a utilizar y $seq\_len$ corresponde al tamaño de la secuencia que entrará a la red.
 
 \subsubsection{Deep fully connected model}
-Se desea ver qué tan efectivo puede ser un modelo que contenga únicamente capas densas. Para ello se agregan tres capas con misma cantidad de neuronas y una capa de \textit{dropout} con probabilidad de 0.2 después de cada una. Al final se encuentra nuevamente el modelo base previamente descrito.
+Se desea ver qué tan efectivo puede ser un modelo que contenga únicamente capas densas. Para ello se agregan tres capas ocultas con diferente número de neuronas y una capa de \textit{dropout} con probabilidad de 0.5 después de cada una. Al final se encuentra nuevamente el modelo base previamente descrito.
 
 \begin{table}[H]
 \centering
@@ -37,17 +38,17 @@ Se desea ver qué tan efectivo puede ser un modelo que contenga únicamente capa
 \textbf{Capa} & \multicolumn{1}{c|}{\textbf{Tipo}} & \multicolumn{1}{c|}{\textbf{Número de neuronas}} \\ \hline
 1             & Fully connected                    & (em\_size*seq\_len)/2                            \\ \hline
 2             & Dropout(0.2)                       &                                                  \\ \hline
-3             & Fully connected                    & (em\_size*seq\_len)/2                            \\ \hline
+3             & Fully connected                    & (em\_size*seq\_len)/4                            \\ \hline
 4             & Dropout(0.2)                       &                                                  \\ \hline
-5             & Fully connected                    & (em\_size*seq\_len)/2                            \\ \hline
+5             & Fully connected                    & (em\_size*seq\_len)/8                            \\ \hline
 6             & Dropout(0.2)                       &                                                  \\ \hline
-7             & Fully connected                    & (em\_size*seq\_len)/2                            \\ \hline
+7             & Fully connected                    & (em\_size*seq\_len)/16                            \\ \hline
 8             & Fully connected                    & Número de clases                                 \\ \hline
 \end{tabular}
 \end{table}
 
 \subsubsection{Simple RNN model}
-Ahora bien, habiendo evaluado el desempeño obtenido por un modelo sin recurrencia, se procede a evaluar el desempeño de modelos más complejos y adecuados para la tarea de procesamiento de lenguaje natural. En primer lugar se implementa un modelo con la capa \textit{SimpleRNN} ofrecida por \textit{Tensorflow}.
+Ahora bien, habiendo evaluado el desempeño obtenido por un modelo sin recurrencia, se procede a evaluar el desempeño de modelos más complejos y adecuados especialmente para la tarea de procesamiento de lenguaje natural. En este caso, se implementa un modelo con la capa \textit{SimpleRNN} ofrecida por \textit{Tensorflow}.
 
 \begin{table}[H]
 \centering
@@ -56,9 +57,9 @@ Ahora bien, habiendo evaluado el desempeño obtenido por un modelo sin recurrenc
 \begin{tabular}{|c|l|l|}
 \hline
 \textbf{Capa} & \multicolumn{1}{c|}{\textbf{Tipo}} & \multicolumn{1}{c|}{\textbf{Número de neuronas}} \\ \hline
-1             & SimpleRNN                          & 75                                               \\ \hline
+1             & SimpleRNN                          & em\_size                                               \\ \hline
 2             & Flatten                            &                                                  \\ \hline
-3             & Fully connected                    & (em\_size*seq\_len)/2                            \\ \hline
+3             & Fully connected                    & (em\_size*seq\_len)/8                            \\ \hline
 4             & Fully connected                    & Número de clases                                 \\ \hline
 \end{tabular}
 \end{table}
@@ -73,14 +74,9 @@ Finalmente, la última arquitectura propuesta implementa neurona \textit{LSTM} e
 \begin{tabular}{|c|l|l|}
 \hline
 \textbf{Capa} & \multicolumn{1}{c|}{\textbf{Tipo}} & \multicolumn{1}{c|}{\textbf{Número de neuronas}} \\ \hline
-1             & LSTM                               & 75                                               \\ \hline
+1             & LSTM                               & em\_size                                               \\ \hline
 2             & Flatten                            &                                                  \\ \hline
-3             & Fully connected                    & (em\_size*seq\_len)/2                            \\ \hline
+3             & Fully connected                    & (em\_size*seq\_len)/8                           \\ \hline
 4             & Fully connected                    & Número de clases                                 \\ \hline
 \end{tabular}
 \end{table}
-
-\subsection{Simpsons Dataset}
-
-
-\subsection{Friends Dataset}
