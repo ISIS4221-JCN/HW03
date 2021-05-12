@@ -99,13 +99,10 @@ Similar a los \textit{embeddings} del \textit{dataset} de los Simpsons se obtien
 
 \subsection{Relaciones interesantes}
 
-Finalmente, una de características principales y bastante interesantes de los \textit{embeddings} es que logran capturar la relación semántica de las palabras en un espacio vectorial. Razón por la cual los términos se pueden operar y se pueden encontrar algunas relaciones bastante interesantes. A partir de los modelos de word2vec, construidos en esta sección, se realizaron y analizaron algunas de las relaciones que surgieron en tres niveles diferentes:
-
+Finalmente, una de características interesantes de los \textit{embeddings} es que logran capturar la relación de las palabras en un espacio vectorial. Razón por la cual los términos se pueden operar y se pueden encontrar algunas relaciones bastante interesantes. A partir de los modelos de word2vec, construidos en esta sección, se realizaron y analizaron algunas de las relaciones que surgieron en tres niveles diferentes:
 \begin{itemize}
     \item \textbf{Similaridad:} ¿Qué tan similares eran dos palabras?
-    
     \item \textbf{Analogía:} ¿Qué palabra $w_x$ es a $w_3$ como $w_1$ es a la palabra $w_2$?
-    
     \item \textbf{Coincidencia (\textit{doesn't match}):} ¿Cuál de las palabras o términos es el menos similar entre estos?
 \end{itemize}
 
@@ -137,6 +134,6 @@ De forma análoga, la figura \ref{fig:friends_sim_matrix} presenta las similitud
     \label{fig:friends_sim_matrix}
 \end{figure}
 
-Adicionalmente, los personajes que sostienen una relación son aquellos que muestran una mayor cercanía, cómo lo son: \textit{Chandler y Monica} y \textit{Ross y Rachel}. 
+Adicionalmente, los personajes que sostienen una relación son aquellos que muestran una mayor cercanía, cómo lo son: \textit{Chandler y Monica} y \textit{Ross y Rachel}. De igual forma, en cuanto a las analogías se obtuvieron resultados coherentes con las relaciones de la serie: \textit{wife} es a \textit{rachel} como \textit{husband} es a \textit{\textbf{ross}} y que \textit{woman} es a \textit{monica} como \textit{\textbf{boy}} es a \textit{chandler} (la palabra en negrilla fue predicha por el modelo). Las comparaciones completas se pueden evidenciar en el cuaderno \texttt{HW03\_Embeddings.ipynb}.
 
 \newpage
