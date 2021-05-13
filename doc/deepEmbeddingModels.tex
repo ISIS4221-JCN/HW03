@@ -27,14 +27,14 @@ La primera etapa de la búsqueda de hiper parámetros se dedicó a fijar la dime
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{doc/images/seq_len/simpsons.pdf}
+        \includegraphics[width=\textwidth]{doc/images/embeddings/simpsons.pdf}
         \caption{Métricas de evaluación para diferentes dimensiones del embedding en el conjunto de datos de \textit{Los Simpsons}.}
         \label{fig:em_embedding_simpsons}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{doc/images/seq_len/friends.pdf}
+        \includegraphics[width=\textwidth]{doc/images/embeddings/friends.pdf}
         \caption{Métricas de evaluación para diferentes dimensiones del embedding en el conjunto de datos de \textit{Friends}.}
         \label{fig:em_embedding_friends}
     \end{subfigure}
@@ -42,7 +42,27 @@ La primera etapa de la búsqueda de hiper parámetros se dedicó a fijar la dime
     \label{fig:em_embedding}
 \end{figure}
 
-Una vez se ha definido la mejor dimensión para el embedding, se procede a evaluar distintas longitudes de las secuencias. 
+Una vez se ha definido la mejor dimensión para el embedding, se procede a evaluar distintas longitudes de las secuencias. Siguiendo un procedimiento similar al usado para las dimensiones del embedding, se define una serie de posibles longitudes para las secuencias. En este caso las longitudes consideradas fueron: 5, 10, 15, 20, 25, 50 y 100. Los resultados de esta búsqueda se presentan en la figura \ref{fig:em_seq_len}.
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{doc/images/seq_len/simpsons.pdf}
+        \caption{Métricas de evaluación para diferentes longitudes de las secuencias en el conjunto de datos de \textit{Los Simpsons}.}
+        \label{fig:em_seq_len_simpsons}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{doc/images/seq_len/friends.pdf}
+        \caption{Métricas de evaluación para diferentes longitudes de las secuencias en el conjunto de datos de \textit{Friends}.}
+        \label{fig:em_seq_len_friends}
+    \end{subfigure}
+    \caption{Métricas de evaluación para la búsqueda de la mejor longitud de secuencia.}
+    \label{fig:em_seq_len}
+\end{figure}
 
 
 \subsection{Simpsons Dataset}
