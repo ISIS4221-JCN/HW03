@@ -75,6 +75,24 @@ Para análisis posteriores, se extrae el mejor modelo con base en el f1 score. C
 \end{itemize}
 
 \subsubsection{Modelos con embedding dentro de la red}
+La tabla \ref{tab:em_simpsons_global} presenta los resultados de los tipos de modelos considerados para el problema de clasificación del conjunto de datos de \textit{Los Simpsons}. Los resultados de la tabla \ref{tab:em_simpsons_global} provienen de la evaluación del conjunto de prueba sobre el mejor modelo de cada uno de los tipos que fueron puestos a prueba. En términos generales se puede decir que los modelos logran captar suficiente información como para realizar una clasificación dado que su \textit{accuracy} es mayor del 25\% esperado en un clasificador completamente aleatorio. Por otra parte, se tienen los valores de \textit{precision} y \textit{recall} que se combinan en la puntuación F1. Para la \textit{precision} se puede notar que supera el 60\% para todos los tipos de modelos, lo cual indica que estos tienden a presentar un menor número de falsos positivos. Sin embargo, el \textit{recall}, que en ningún caso supera el 40\%, indica que los modelos tienden a presentar falsos negativos.
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/results/simpsons_models.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} para los mejores modelos de cada tipo.}
+    \label{tab:em_simpsons_global}
+\end{table}
+
+
 
 \subsubsection{Conclusiones}
 
