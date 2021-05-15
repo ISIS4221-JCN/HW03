@@ -221,8 +221,8 @@ Los resultados de los modelos de FCNs se presentan con las métricas de exactitu
 
 A partir de los resultados obtenidos se puede establecer que los mejores modelos de redes completamente conectadas para los conjuntos de datos de \textit{Los Simpsons} y \textit{Friends} son los siguientes:
 \begin{itemize}
-    \item Para \textit{Los Simpsons} un modelo de una capa densa con 75 unidades. Este modelo obtuvo un \textit{accuracy} del 52.35\% y un puntaje F1 del 43.69\%.
-    \item Para \textit{Friends} un modelo de una capa densa con 75 unidades. Este modelo obtuvo un \textit{accuracy} del 29.23\% y un puntaje F1 del 10.20\%.
+    \item Para \textit{Los Simpsons} un modelo de una capa densa con 150 unidades. Este modelo obtuvo un \textit{accuracy} del 52.22\% y un puntaje F1 del 45.45\%.
+    \item Para \textit{Friends} un modelo de una capa densa con 75 unidades y una capa densa de 50 unidades. Este modelo obtuvo un \textit{accuracy} del 28.67\% y un puntaje F1 del 10.61\%.
 \end{itemize}
 
 \subsubsection{Red Neuronal Recurrente Simple}
@@ -252,7 +252,7 @@ Los resultados de los modelos de redes neuronales recurrentes se presentan con l
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/rnn_simpsons_train.csv}%
+    {data/em_models/simple_rnn_simpsons_train.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Los Simpsons} para los modelos de redes neuronales recurrentes.}
@@ -266,7 +266,7 @@ Los resultados de los modelos de redes neuronales recurrentes se presentan con l
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/rnn_simpsons_val.csv}%
+    {data/em_models/simple_rnn_simpsons_val.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de validación de \textit{Los Simpsons} para los modelos de redes neuronales recurrentes.}
@@ -280,7 +280,7 @@ Los resultados de los modelos de redes neuronales recurrentes se presentan con l
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/rnn_simpsons_test.csv}%
+    {data/em_models/simple_rnn_simpsons_test.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} para los modelos de redes neuronales recurrentes.}
@@ -294,7 +294,7 @@ Los resultados de los modelos de redes neuronales recurrentes se presentan con l
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/rnn_friends_train.csv}%
+    {data/em_models/simple_rnn_friends_train.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Friends} para los modelos de redes neuronales recurrentes.}
@@ -308,7 +308,7 @@ Los resultados de los modelos de redes neuronales recurrentes se presentan con l
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/rnn_friends_val.csv}%
+    {data/em_models/simple_rnn_friends_val.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de validación de \textit{Friends} para los modelos de redes neuronales recurrentes.}
@@ -322,7 +322,7 @@ Los resultados de los modelos de redes neuronales recurrentes se presentan con l
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/rnn_friends_test.csv}%
+    {data/em_models/simple_rnn_friends_test.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} para los modelos de redes neuronales recurrentes.}
@@ -331,8 +331,8 @@ Los resultados de los modelos de redes neuronales recurrentes se presentan con l
 
 A partir de los resultados obtenidos se puede establecer que los mejores modelos de redes completamente conectadas para los conjuntos de datos de \textit{Los Simpsons} y \textit{Friends} son los siguientes:
 \begin{itemize}
-    \item Para \textit{Los Simpsons} un modelo de una capa recurrente con 150 unidades y una capa densa con 75 unidades. Este modelo obtuvo un \textit{accuracy} del 48.93\% y un puntaje F1 del 45.37\%.
-    \item Para \textit{Friends} un modelo de una capa recurrente de 150 unidades y una capa densa con 75 unidades. Este modelo obtuvo un \textit{accuracy} del 24.97\% y un puntaje F1 del 12.71\%.
+    \item Para \textit{Los Simpsons} un modelo de una capa recurrente con 300 unidades y una capa densa con 75 unidades. Este modelo obtuvo un \textit{accuracy} del 50.29\% y un puntaje F1 del 42.97\%.
+    \item Para \textit{Friends} un modelo de una capa recurrente de 150 unidades y una capa densa con 75 unidades. Este modelo obtuvo un \textit{accuracy} del 24.53\% y un puntaje F1 del 3.52\%.
 \end{itemize}
 
 \subsubsection{Red Neuronal con LSTM Unidireccional}
