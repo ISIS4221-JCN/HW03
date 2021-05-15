@@ -1,0 +1,2 @@
+name,model,accuracy,precision,recall,F1
+binary_vectorization,6,0.2997,0.5274,0.0677,0.1200
