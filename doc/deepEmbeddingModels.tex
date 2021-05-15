@@ -692,7 +692,7 @@ Los resultados de los modelos de redes neuronales con LSTM bidireccional se pres
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/gru_simpsons_train.csv}%
+    {data/em_models/bi_lstm_improved_simpsons_train.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Los Simpsons} para los modelos de redes neuronales LSTM bidireccionales.}
@@ -706,10 +706,10 @@ Los resultados de los modelos de redes neuronales con LSTM bidireccional se pres
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/gru_simpsons_val.csv}%
+    {data/em_models/bi_lstm_improved_simpsons_val.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
-    \caption{Métricas de evaluación sobre datos de validación de \textit{Los Simpsons} para los modelos de redes neuronales GRU.}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Los Simpsons} para los modelos de redes neuronales LSTM bidireccionales.}
     \label{tab:em_results_bilstm_deep_simpsons_val}
 \end{table}
 
@@ -720,10 +720,10 @@ Los resultados de los modelos de redes neuronales con LSTM bidireccional se pres
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/gru_simpsons_test.csv}%
+    {data/em_models/bi_lstm_improved_simpsons_test.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
-    \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} para los modelos de redes neuronales GRU.}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} para los modelos de redes neuronales LSTM bidireccionales.}
     \label{tab:em_results_bilstm_deep_simpsons_test}
 \end{table}
 
@@ -734,10 +734,10 @@ Los resultados de los modelos de redes neuronales con LSTM bidireccional se pres
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/gru_friends_train.csv}%
+    {data/em_models/bi_lstm_improved_friends_train.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
-    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Friends} para los modelos de redes neuronales GRU.}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Friends} para los modelos de redes neuronales LSTM bidireccionales.}
     \label{tab:em_results_bilstm_deep_friends_train}
 \end{table}
 
@@ -748,10 +748,10 @@ Los resultados de los modelos de redes neuronales con LSTM bidireccional se pres
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/gru_friends_val.csv}%
+    {data/em_models/bi_lstm_improved_friends_val.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
-    \caption{Métricas de evaluación sobre datos de validación de \textit{Friends} para los modelos de redes neuronales GRU.}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Friends} para los modelos de redes neuronales LSTM bidireccionales.}
     \label{tab:em_results_bilstm_deep_friends_val}
 \end{table}
 
@@ -762,12 +762,34 @@ Los resultados de los modelos de redes neuronales con LSTM bidireccional se pres
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/gru_friends_test.csv}%
+    {data/em_models/bi_lstm_improved_friends_test.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
-    \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} para los modelos de redes neuronales GRU.}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} para los modelos de redes neuronales LSTM bidireccionales.}
     \label{tab:em_results_bilstm_deep_friends_test}
 \end{table}
 
+A partir de los resultados obtenidos se puede establecer que los mejores modelos de redes completamente conectadas para los conjuntos de datos de \textit{Los Simpsons} y \textit{Friends} son los siguientes:
+\begin{itemize}
+    \item Para \textit{Los Simpsons} un modelo de una capa GRU con 300 unidades y una capa densa de 152 unidades. Este modelo obtuvo un \textit{accuracy} del 52.13\% y un puntaje F1 del 46.96\%.
+    \item Para \textit{Friends} un modelo de una capa GRU de 300 unidades y una capa densa con 152 unidades. Este modelo obtuvo un \textit{accuracy} del 27.91\% y un puntaje F1 del 10.97\%.
+\end{itemize}
+
 \subsubsection{Red Neuronal con Diferente Vectorización}
-El último conjunto de modelos considera una variación en el tipo de vectorización que se está llevando a cabo. Hasta este conjunto de modelos, la vectorización que se estaba utilizando corresponde al modo de salida (\textit{output\_mode}) de números enteros (\textit{int}). 
+El último conjunto de modelos considera una variación en el tipo de vectorización que se está llevando a cabo. Hasta este conjunto de modelos, la vectorización que se estaba utilizando corresponde al modo de salida (\textit{output\_mode}) de números enteros (\textit{int}). Para esta etapa del desarrollo se tienen en cuenta dos tipos de vectorizaciones adicionales: binaria (\textit{binary}) y TF-IDF (\textit{tf-idf}). Debido a que el cambio en la vectorización cambia las dimensiones de la salida se deben utilizar redes neuronales completamente conectadas para realizar la evaluación. Para este tipo de vectorizaciones se evalúa la mejor arquitectura de redes completamente conectadas: una capa densa de 150 unidades para el conjunto de datos de \textit{Los Simpsons} y una capa densa de 75 unidades junto con una capa densa de 50 unidades en el conjunto de datos de \textit{Friends.} 
+
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/bi_lstm_improved_friends_test.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} para los modelos de redes neuronales LSTM bidireccionales.}
+    \label{tab:em_results_bilstm_deep_friends_test}
+\end{table}
+
