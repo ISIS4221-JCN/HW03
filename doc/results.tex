@@ -6,7 +6,7 @@
 
 Los modelos descritos previamente en la sección \ref{sec:deepModels} se implementan como clasificadores para identificar cuál de los personajes principales de Los Simpson dijo un diálogo específico. En este caso se identifican como personajes principales Bart, Homer, Lisa y Marge, siendo las clases 0, 1, 2, 3 respectivamente. Se almacenan los resultados y se muestran los siguientes resultados promediando según modelo, tamaño del embedding y longitud de la secuencia de entrada a la red.\\
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{results/friends/deepModels/sim_res_deep_model.png}
     \caption{Resultados por tipo de modelo}
@@ -15,7 +15,7 @@ Los modelos descritos previamente en la sección \ref{sec:deepModels} se impleme
 
 Según la figura \ref{fig:sim_deep_model}, es evidente que el modelo de tipo \textit{baseline} incurre rápidamente en \textit{overfitting}, pues su acierto en los datos de entrenamiento es muy bueno, pero en los de validación es pésimo. En cuanto a los otros modelos su rendimiento es relativamente parejo, destacando una muy buena precisión por parte de los modelos recurrentes  (LSTM y Simple RNN).\\
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{results/friends/deepModels/sim_res_deep_em_size.png}
     \caption{Resultados por tamaño del embedding}
@@ -24,7 +24,7 @@ Según la figura \ref{fig:sim_deep_model}, es evidente que el modelo de tipo \te
 
 Ahora bien, se desea comparar el efecto de los diferentes tamaños de embedding implementados, los cuales corresponden a 15, 75 y 150. Nuevamente, resulta evidente (\textit{véase fig. \ref{fig:sim_deep_em_size}}) que el embedding de tamaño 150 tiende a sobre ajustarse más a los datos de entrenamiento. No obstante, alcanza a dar un resultado ligeramente mejor que los de 15 y 75.\\
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{results/friends/deepModels/sim_res_deep_seq_len.png}
     \caption{Resultados por el tamaño de la secuencia}
@@ -39,7 +39,7 @@ Para análisis posteriores, se extrae el mejor modelo con base en el f1 score. C
     \item \textbf{Entrenamiento:}
     \input{results/simpson/deepModels/Train.txt}
     
-    \begin{figure}
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{results/simpson/deepModels/Train.png}
         \caption{Matriz de confusión para entrenamiento en Los Simpson}
@@ -51,7 +51,7 @@ Para análisis posteriores, se extrae el mejor modelo con base en el f1 score. C
     \item \textbf{Validación:}
     \input{results/simpson/deepModels/Validation.txt}
     
-    \begin{figure}
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{results/simpson/deepModels/Validation.png}
         \caption{Matriz de confusión para validación en Los Simpson}
@@ -63,7 +63,7 @@ Para análisis posteriores, se extrae el mejor modelo con base en el f1 score. C
     \item \textbf{Test:}
     \input{results/simpson/deepModels/Test.txt}
     
-    \begin{figure}
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{results/simpson/deepModels/Test.png}
         \caption{Matriz de confusión para test en Los Simpson}
@@ -86,7 +86,7 @@ Para el caso de Friends, los modelos a implementar son exactamente los mismos. E
 
 Se puede evidenciar en la figura \ref{fig:fri_deep_model} que nuevamente el modelo \textit{baseline} incurre en \textit{overfitting} rápidamente. En este caso, cabe resaltar que los resultados de SimpleRNN no son tan parejos como los de LSTM, en especial en validación. De igual manera, DeepFC incurre en overfitting, pues sus resultados en entrenamiento mejoran, pero los de validación no se mueven.\\
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{results/friends/deepModels/sim_res_deep_model.png}
     \caption{Resultados por modelo}
@@ -95,7 +95,7 @@ Se puede evidenciar en la figura \ref{fig:fri_deep_model} que nuevamente el mode
 
 En el caso del tamaño del embedding implementado, los resultados son muy similares a los obtenidos para Los Simpson, en tanto a que a medida que se incrementa el embedding hay más posibilidad de sobre ajustar el modelo a los datos de entrenamiento.\\
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{results/friends/deepModels/sim_res_deep_em_size.png}
     \caption{Resultados por tamaño del embedding}
@@ -104,7 +104,7 @@ En el caso del tamaño del embedding implementado, los resultados son muy simila
 
 Finalmente, en cuanto al tamaño de la secuencia, se observan resultados semejantes en validación con una pequeña diferencia en entrenamiento favoreciendo una secuencia de 15.\\
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{results/friends/deepModels/sim_res_deep_seq_len.png}
     \caption{Resultados por tamaño de la secuencia}
@@ -117,7 +117,7 @@ Para análisis posteriores, se extrae el mejor modelo con base en el f1 score. C
     \item \textbf{Entrenamiento:}
     \input{results/friends/deepModels/Train.txt}
 
-    \begin{figure}
+    \begin{figure}[H]
         \centering
         \includegraphics[width = 0.9\textwidth]{results/friends/deepModels/Train.png}
         \caption{Matriz de confusión para entrenamiento de friends}
@@ -129,19 +129,19 @@ Para análisis posteriores, se extrae el mejor modelo con base en el f1 score. C
     \item \textbf{Validación:}
     \input{results/friends/deepModels/Validation.txt}
 
-    \begin{figure}
+    \begin{figure}[H]
         \centering
         \includegraphics[width = 0.9\textwidth]{results/friends/deepModels/Validation.png}
         \caption{Matriz de confusión para validación de friends}
         \label{fig:my_label}
     \end{figure}
     
-    Ahora bien, los resultados descritos previamente se repiten para el caso de validación como era de esperarse. Mostrando que las funciones que describen los datos de entrenamiento y validación son similares, dando lugar a una baja varianza. La matriz de confusión resulta muy mala en especial para la clase 4 donde clasifica sus dialogos como de otros con casi igual probaiblidad.
+    Ahora bien, los resultados descritos previamente se repiten para el caso de validación como era de esperarse. Mostrando que las funciones que describen los datos de entrenamiento y validación son similares, dando lugar a una baja varianza. La matriz de confusión resulta muy mala en especial para la clase 4 donde clasifica sus diálogos como de otros con casi igual probabilidad.
     
     \item \textbf{Test:}
     \input{results/friends/deepModels/Test.txt}
 
-    \begin{figure}
+    \begin{figure}[H]
         \centering
         \includegraphics[width = 0.9\textwidth]{results/friends/deepModels/Test.png}
         \caption{Matriz de confusión para Test de friends}
