@@ -778,18 +778,186 @@ A partir de los resultados obtenidos se puede establecer que los mejores modelos
 \subsubsection{Red Neuronal con Diferente Vectorización}
 El último conjunto de modelos considera una variación en el tipo de vectorización que se está llevando a cabo. Hasta este conjunto de modelos, la vectorización que se estaba utilizando corresponde al modo de salida (\textit{output\_mode}) de números enteros (\textit{int}). Para esta etapa del desarrollo se tienen en cuenta dos tipos de vectorizaciones adicionales: binaria (\textit{binary}) y TF-IDF (\textit{tf-idf}). Debido a que el cambio en la vectorización cambia las dimensiones de la salida se deben utilizar redes neuronales completamente conectadas para realizar la evaluación. Para este tipo de vectorizaciones se evalúa la mejor arquitectura de redes completamente conectadas: una capa densa de 150 unidades para el conjunto de datos de \textit{Los Simpsons} y una capa densa de 75 unidades junto con una capa densa de 50 unidades en el conjunto de datos de \textit{Friends.} 
 
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/em_models/binary_vectorization_simpsons_train.csv}%
+    {name=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Los Simpsons} para los modelos con vectorización binaria.}
+    \label{tab:em_results_binary_simpsons_train}
+\end{table}
 
 \begin{table}[H]
     \centering
     \csvreader[%
     tabular={|c|c|c|c|c|},
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
-    late after line=\\ \hline
+    late after line=\\ \hline,
+    respect underscore = true
     ]%
-    {data/em_models/bi_lstm_improved_friends_test.csv}%
-    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {data/em_models/binary_vectorization_simpsons_val.csv}%
+    {name=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
-    \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} para los modelos de redes neuronales LSTM bidireccionales.}
-    \label{tab:em_results_bilstm_deep_friends_test}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Los Simpsons} para los modelos con vectorización binaria.}
+    \label{tab:em_results_binary_simpsons_val}
 \end{table}
 
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/em_models/binary_vectorization_simpsons_test.csv}%
+    {name=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} para los modelos con vectorización binaria.}
+    \label{tab:em_results_binary_simpsons_test}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/em_models/binary_vectorization_friends_train.csv}%
+    {name=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Friends} para los modelos con vectorización binaria.}
+    \label{tab:em_results_binary_friends_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/em_models/binary_vectorization_friends_val.csv}%
+    {name=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Friends} para los modelos con vectorización binaria.}
+    \label{tab:em_results_binary_friends_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/em_models/binary_vectorization_friends_test.csv}%
+    {name=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} para los modelos con vectorización binaria.}
+    \label{tab:em_results_binary_friends_test}
+\end{table}
+
+Las tablas \ref{tab:em_results_binary_simpsons_train}, \ref{tab:em_results_binary_simpsons_val} y \ref{tab:em_results_binary_simpsons_test} presentan los resultados del entrenamiento, validación y vectorización del modelo con vectorización binaria sobre el conjunto de datos de \textit{Los Simpsons}. Por su parte, las tablas \ref{tab:em_results_binary_friends_train}, \ref{tab:em_results_binary_friends_val} y \ref{tab:em_results_binary_friends_test} presentan los resultados sobre el conjunto de datos de \textit{Friends}. Esta vectorización tuvo una \textit{accuracy} de 52.91\% en el conjunto de datos de \textit{Los Simpsons} y 30.24\% en el conjunto de datos de \textit{Friends}. En lo referente a la puntuación F1, se tiene que el conjunto de datos de \textit{Los Simpsons} tuvo un valor del 43.74\% y del 12.01\% para el conjunto de datos de \textit{Friends}.
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/em_models/tfidf_vectorization_simpsons_train.csv}%
+    {name=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Los Simpsons} para los modelos con vectorización TF-IDF.}
+    \label{tab:em_results_tfidf_simpsons_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/em_models/tfidf_vectorization_simpsons_val.csv}%
+    {name=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Los Simpsons} para los modelos con vectorización TF-IDF.}
+    \label{tab:em_results_tfidf_simpsons_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/em_models/tfidf_vectorization_simpsons_test.csv}%
+    {name=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} para los modelos con vectorización TF-IDF.}
+    \label{tab:em_results_tfidf_simpsons_test}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/em_models/tfidf_vectorization_friends_train.csv}%
+    {name=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Friends} para los modelos con vectorización TF-IDF.}
+    \label{tab:em_results_tfidf_friends_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/em_models/tfidf_vectorization_friends_val.csv}%
+    {name=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Friends} para los modelos con vectorización TF-IDF.}
+    \label{tab:em_results_tfidf_friends_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/em_models/tfidf_vectorization_friends_test.csv}%
+    {name=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} para los modelos con vectorización TF-IDF.}
+    \label{tab:em_results_tfidf_friends_test}
+\end{table}
+
+Por otra parte, las tablas \ref{tab:em_results_tfidf_simpsons_train}, \ref{tab:em_results_tfidf_simpsons_val} y \ref{tab:em_results_tfidf_simpsons_test} presentan los resultados del entrenamiento, validación y vectorización del modelo con vectorización binaria sobre el conjunto de datos de \textit{Los Simpsons}. Por su parte, las tablas \ref{tab:em_results_tfidf_friends_train}, \ref{tab:em_results_tfidf_friends_val} y \ref{tab:em_results_tfidf_friends_test} presentan los resultados sobre el conjunto de datos de \textit{Friends}. La vectorización TF-IDF tuvo una \textit{accuracy} de 51.36\% en el conjunto de datos de \textit{Los Simpsons} y 29.85\% en el conjunto de datos de \textit{Friends}. En lo referente a la puntuación F1, se tiene que el conjunto de datos de \textit{Los Simpsons} tuvo un valor del 44.33\% y del 13.52\% para el conjunto de datos de \textit{Friends}.
