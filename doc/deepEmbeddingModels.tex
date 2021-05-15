@@ -472,7 +472,7 @@ Los resultados de los modelos de redes neuronales con LSTM bidireccional se pres
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/bilstm_simpsons_train.csv}%
+    {data/em_models/bi_lstm_simpsons_train.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Los Simpsons} para los modelos de redes neuronales LSTM bidireccionales.}
@@ -486,7 +486,7 @@ Los resultados de los modelos de redes neuronales con LSTM bidireccional se pres
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/bilstm_simpsons_val.csv}%
+    {data/em_models/bi_lstm_simpsons_val.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de validación de \textit{Los Simpsons} para los modelos de redes neuronales LSTM bidreccionales.}
@@ -500,7 +500,7 @@ Los resultados de los modelos de redes neuronales con LSTM bidireccional se pres
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/bilstm_simpsons_test.csv}%
+    {data/em_models/bi_lstm_simpsons_test.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} para los modelos de redes neuronales LSTM bidireccionales.}
@@ -514,7 +514,7 @@ Los resultados de los modelos de redes neuronales con LSTM bidireccional se pres
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/bilstm_friends_train.csv}%
+    {data/em_models/bi_lstm_friends_train.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Friends} para los modelos de redes neuronales LSTM bidireccionales.}
@@ -528,7 +528,7 @@ Los resultados de los modelos de redes neuronales con LSTM bidireccional se pres
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/bilstm_friends_val.csv}%
+    {data/em_models/bi_lstm_friends_val.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de validación de \textit{Friends} para los modelos de redes neuronales LSTM bidireccionales.}
@@ -542,7 +542,7 @@ Los resultados de los modelos de redes neuronales con LSTM bidireccional se pres
     table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
     late after line=\\ \hline
     ]%
-    {data/em_models/bilstm_friends_test.csv}%
+    {data/em_models/bi_lstm_friends_test.csv}%
     {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
     {\model & \acc & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} para los modelos de redes neuronales LSTM bidireccionales.}
@@ -551,8 +551,8 @@ Los resultados de los modelos de redes neuronales con LSTM bidireccional se pres
 
 A partir de los resultados obtenidos se puede establecer que los mejores modelos de redes completamente conectadas para los conjuntos de datos de \textit{Los Simpsons} y \textit{Friends} son los siguientes:
 \begin{itemize}
-    \item Para \textit{Los Simpsons} un modelo de una capa LSTM bidireccional con 150 unidades y una capa densa de 75 unidades. Este modelo obtuvo un \textit{accuracy} del 51.49\% y un puntaje F1 del 45.51\%.
-    \item Para \textit{Friends} un modelo de una capa LSTM bidireccional de 300 unidades y una capa densa con 75 unidades. Este modelo obtuvo un \textit{accuracy} del 29.17\% y un puntaje F1 del 15.07\%.
+    \item Para \textit{Los Simpsons} un modelo de una capa LSTM bidireccional con 150 unidades y una capa densa de 75 unidades. Este modelo obtuvo un \textit{accuracy} del 52.44\% y un puntaje F1 del 44.33\%.
+    \item Para \textit{Friends} un modelo de una capa LSTM bidireccional de 300 unidades y una capa densa con 75 unidades. Este modelo obtuvo un \textit{accuracy} del 28.33\% y un puntaje F1 del 10.30\%.
 \end{itemize}
 
 \subsubsection{Red Neuronal con GRU}
