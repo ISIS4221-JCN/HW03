@@ -8,7 +8,7 @@ La búsqueda de los hiper parámetros se hace variando los valores correspondien
 
 Para realizar la búsqueda de los parámetros se utiliza un modelo, descrito en la tabla \ref{tab:deep_em_hyper_params}, de una red neuronal completamente conectada (FCN, \textit{Fully Connected Network}). La primera capa de la red corresponde a la de vectorización de texto que oficia como entrada al modelo, recibiendo las sentencias a clasificar. La salida de la capa de vectorización corresponde a una secuencia con una cantidad dada de tokens denotados por \textit{seq\_len}. Una vez se ha vectorizado el texto, este entra a la capa de embedding cuya dimensionalidad va a estar dada por \textit{seq\_len} y \textit{embedding\_dim} que representa la dimensionalidad del embedding. La capa de embedding presenta una salida de dos dimensiones que debe ser ajustada para alimentar las capas densas de la red neuronal. Para dicho ajuste se usa una capa que calcula el promedio global de cada embedding, convirtiendo así la salida de dos dimensiones en un vector con \textit{embedding\_dim} dimensiones. La capa densa de la red contienen un número de neuronas que se calcula con el promedio entre \textit{embedding\_dim} y \textit{output\_dim}, que corresponde al número de clases que serán clasificadas. Finalmente, la última capa contiene \textit{output\_dim} neuronas con el fin de realizar la clasificación correspondiente. \\
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|l|l|}
         \hline
@@ -25,7 +25,7 @@ Para realizar la búsqueda de los parámetros se utiliza un modelo, descrito en 
 
 La primera etapa de la búsqueda de hiper parámetros se dedicó a fijar la dimensionalidad del embedding. Las posibles dimensiones consideradas fueron de 5, 10, 15, 20, 25, 50, 100 y 150. Las figuras \ref{fig:em_embedding_simpsons} y \ref{fig:em_embedding_friends} presentan respectivamente los resultados para los dos conjuntos de datos: el de \textit{Los Simpsons} y \textit{Friends}. Se puede identificar que los mejores resultados se obtienen con una dimensión de 150 para los dos conjuntos de datos. Vale la pena notar que los modelos para el conjunto de datos de \textit{Friends} demuestran aprendizaje, pero con bajos niveles de recall.  \\
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
@@ -46,7 +46,7 @@ La primera etapa de la búsqueda de hiper parámetros se dedicó a fijar la dime
 
 Una vez se ha definido la mejor dimensión para el embedding, se procede a evaluar distintas longitudes de las secuencias. Siguiendo un procedimiento similar al usado para las dimensiones del embedding, se define una serie de posibles longitudes para las secuencias. En este caso las longitudes consideradas fueron: 5, 10, 15, 20, 25, 50 y 100. Los resultados de esta búsqueda se presentan en la figura \ref{fig:em_seq_len}. A partir de los resultados se puede establecer que el mejor modelo corresponde a una longitud de secuencia de 15 para el conjunto de datos de \textit{Los Simpsons} y 20 para el conjunto de datos de \textit{Friends}.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
@@ -67,7 +67,7 @@ Una vez se ha definido la mejor dimensión para el embedding, se procede a evalu
 
 El último hiper parámetro que hace parte de la búsqueda corresponde al tamaño del vocabulario. Para esta búsqueda se consideran tamaños de vocabulario de 1000, 2500, 5000, 10000 y 15000. Los resultados de la búsqueda del mejor tamaño de vocabulario se presentan en la figura \ref{fig:em_vocabulary_size}. De los resultados presentados se puede establecer que el mejor tamaño de vocabulario es de 10000 para el conjunto de datos de \textit{Los Simpsons} y de 15000 para el conjunto de datos de \textit{Friends}.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
@@ -88,7 +88,7 @@ El último hiper parámetro que hace parte de la búsqueda corresponde al tamañ
 
 A partir de los resultados obtenidos en las tres búsquedas presentadas previamente se pueden establecer los hiper parámetros que serán usados en la etapa de selección de modelos. La tabla \ref{tab:em_hyper_params} resume estos hiper parámetros para cada conjunto de datos. Para la etapa de selección de modelos se procede a evaluar diferentes arquitecturas profundas para la clasificación de las sentencias en los dos conjuntos de datos.
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|c|}
         \hline
@@ -107,23 +107,23 @@ A continuación se presentan los modelos contemplados para solucionar el problem
 \subsubsection{Redes Completamente Conectadas}
 La primera arquitectura que se evalúa corresponde a redes completamente conectadas (FCN, \textit{Fully Connected Network}). En la tabla \ref{tab:em_fcn_definition} se presentan las arquitecturas evaluadas para las FCNs. Vale la pena mencionar que para los modelos de redes completamente conectadas se incluye una capa de vectorización con enteros y una capa que calcula el embedding de las sentencias. Estas capas permiten calcular una representación de las sentencias según el tamaño del diccionario, las dimensiones del embedding y la longitud de las sentencias definidas en la búsqueda de los hiper parámetros.
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|c|}
         \hline 
         \textbf{Modelo} & \textbf{Primera Capa} & \textbf{Segunda Capa} & \textbf{Tercera Capa} \\ \hline
-        1 & Densa, 25 & -- & -- \\ \hline
-        2 & Densa, 50 & -- & -- \\ \hline
-        3 & Densa, 75 & -- & -- \\ \hline
-        4 & Densa, 100 & -- & -- \\ \hline
-        5 & Densa, 125 & -- & -- \\ \hline
-        6 & Densa, 150 & -- & -- \\ \hline
-        7 & Densa, 25 & Densa, 25 & -- \\ \hline
-        8 & Densa, 50 & Densa, 25 & -- \\ \hline
-        9 & Densa, 50 & Densa, 50 & -- \\ \hline
-        10 & Densa, 75 & Densa, 50 & -- \\ \hline
-        11 & Densa, 100 & Densa, 50 & -- \\ \hline
-        12 & Densa, 150 & Densa, 75 & -- \\ \hline
+        1 & Densa, 25 & - & - \\ \hline
+        2 & Densa, 50 & - & - \\ \hline
+        3 & Densa, 75 & - & - \\ \hline
+        4 & Densa, 100 & - & - \\ \hline
+        5 & Densa, 125 & - & - \\ \hline
+        6 & Densa, 150 & - & - \\ \hline
+        7 & Densa, 25 & Densa, 25 & - \\ \hline
+        8 & Densa, 50 & Densa, 25 & - \\ \hline
+        9 & Densa, 50 & Densa, 50 & - \\ \hline
+        10 & Densa, 75 & Densa, 50 & - \\ \hline
+        11 & Densa, 100 & Densa, 50 & - \\ \hline
+        12 & Densa, 150 & Densa, 75 & - \\ \hline
         13 & Densa, 75 & Densa, 50 & Densa, 25 \\ \hline
         14 & Densa, 100 & Densa, 50 & Densa, 25 \\ \hline
         15 & Densa, 150 & Densa, 75 & Densa, 25 \\ \hline
@@ -133,19 +133,641 @@ La primera arquitectura que se evalúa corresponde a redes completamente conecta
     \label{tab:em_fcn_definition}
 \end{table}
 
+Los resultados de los modelos de FCNs se presentan con las métricas de exactitud (\textit{accuracy}), precisión (\textit{precision}) y exhaustividad (\textit{recall}). Con el fin de tener una mejor noción respecto a las métricas de precisión y \textit{recall}, se incluye la métrica de F1. Los resultados para los modelos evaluados sobre los conjuntos de entrenamiento, validación y prueba del conjunto de datos de \textit{Los Simpsons} se presentan en las tablas \ref{tab:em_results_fcn_simpsons_train}, \ref{tab:em_results_fcn_simpsons_val} y \ref{tab:em_results_fcn_simpsons_test} respectivamente. Por su parte, los resultados sobre los conjuntos de entrenamiento, validación y prueba del conjunto de datos de \textit{Friends} se presentan en las tablas \ref{tab:em_results_fcn_friends_train}, \ref{tab:em_results_fcn_friends_val} y \ref{tab:em_results_fcn_friends_test}.
 
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/fcn_models_simpsons_train.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Los Simpsons} para los modelos de redes completamente conectadas.}
+    \label{tab:em_results_fcn_simpsons_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/fcn_models_simpsons_val.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Los Simpsons} para los modelos de redes completamente conectadas.}
+    \label{tab:em_results_fcn_simpsons_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/fcn_models_simpsons_test.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} para los modelos de redes completamente conectadas.}
+    \label{tab:em_results_fcn_simpsons_test}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/fcn_models_friends_train.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Friends} para los modelos de redes completamente conectadas.}
+    \label{tab:em_results_fcn_friends_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/fcn_models_friends_val.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Friends} para los modelos de redes completamente conectadas.}
+    \label{tab:em_results_fcn_friends_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/fcn_models_friends_test.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} para los modelos de redes completamente conectadas.}
+    \label{tab:em_results_fcn_friends_test}
+\end{table}
+
+A partir de los resultados obtenidos se puede establecer que los mejores modelos de redes completamente conectadas para los conjuntos de datos de \textit{Los Simpsons} y \textit{Friends} son los siguientes:
+\begin{itemize}
+    \item Para \textit{Los Simpsons} un modelo de una capa densa con 75 unidades. Este modelo obtuvo un \textit{accuracy} del 52.35\% y un puntaje F1 del 43.69\%.
+    \item Para \textit{Friends} un modelo de una capa densa con 75 unidades. Este modelo obtuvo un \textit{accuracy} del 29.23\% y un puntaje F1 del 10.20\%.
+\end{itemize}
 
 \subsubsection{Red Neuronal Recurrente Simple}
+El segundo conjunto de redes neuronales que fueron evaluadas corresponde a redes neuronales con capas recurrentes simples. La tabla \ref{tab:em_simple_rnn} presenta las arquitecturas evaluadas para este conjunto de redes neuronales. De igual modo, estas redes incluyen una capa de vectorización y una capa de embedding con los hiper parámetros definidos en la etapa previa.
 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline 
+        \textbf{Modelo} & \textbf{1\textsuperscript{ra} Capa} & \textbf{2\textsuperscript{da} Capa} & \textbf{3\textsuperscript{ra} Capa} & \textbf{4\textsuperscript{ta} Capa} & \textbf{5\textsuperscript{ta} Capa} \\ \hline
+        1 & RNN, 150 & Densa, 75 & - & - & - \\ \hline
+        2 & RNN, 300 & Densa, 75 & - & - & - \\ \hline
+        3 & RNN, 150 & Densa 150 & Densa, 75 & Densa, 25 & - \\ \hline
+        4 & RNN, 150 & RNN, 150 & Densa, 150 & Densa, 75 & Densa, 25 \\ \hline
+        5 & RNN, 300 & RNN, 150 & Densa, 150 & Densa, 75 & Densa, 25 \\ \hline
+    \end{tabular}
+    \caption{Arquitecturas evaluadas para redes neuronales con capas recurrentes simples.}
+    \label{tab:em_simple_rnn}
+\end{table}
+
+Los resultados de los modelos de redes neuronales recurrentes se presentan con las métricas de exactitud (\textit{accuracy}), precisión (\textit{precision}) y exhaustividad (\textit{recall}). Con el fin de tener una mejor noción respecto a las métricas de precisión y \textit{recall}, se incluye la métrica de F1. Los resultados para los modelos evaluados sobre los conjuntos de entrenamiento, validación y prueba del conjunto de datos de \textit{Los Simpsons} se presentan en las tablas \ref{tab:em_results_rnn_simpsons_train}, \ref{tab:em_results_rnn_simpsons_val} y \ref{tab:em_results_rnn_simpsons_test} respectivamente. Por su parte, los resultados sobre los conjuntos de entrenamiento, validación y prueba del conjunto de datos de \textit{Friends} se presentan en las tablas \ref{tab:em_results_rnn_friends_train}, \ref{tab:em_results_rnn_friends_val} y \ref{tab:em_results_rnn_friends_test}.
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/rnn_simpsons_train.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Los Simpsons} para los modelos de redes neuronales recurrentes.}
+    \label{tab:em_results_rnn_simpsons_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/rnn_simpsons_val.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Los Simpsons} para los modelos de redes neuronales recurrentes.}
+    \label{tab:em_results_rnn_simpsons_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/rnn_simpsons_test.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} para los modelos de redes neuronales recurrentes.}
+    \label{tab:em_results_rnn_simpsons_test}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/rnn_friends_train.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Friends} para los modelos de redes neuronales recurrentes.}
+    \label{tab:em_results_rnn_friends_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/rnn_friends_val.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Friends} para los modelos de redes neuronales recurrentes.}
+    \label{tab:em_results_rnn_friends_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/rnn_friends_test.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} para los modelos de redes neuronales recurrentes.}
+    \label{tab:em_results_rnn_friends_test}
+\end{table}
+
+A partir de los resultados obtenidos se puede establecer que los mejores modelos de redes completamente conectadas para los conjuntos de datos de \textit{Los Simpsons} y \textit{Friends} son los siguientes:
+\begin{itemize}
+    \item Para \textit{Los Simpsons} un modelo de una capa recurrente con 150 unidades y una capa densa con 75 unidades. Este modelo obtuvo un \textit{accuracy} del 48.93\% y un puntaje F1 del 45.37\%.
+    \item Para \textit{Friends} un modelo de una capa recurrente de 150 unidades y una capa densa con 75 unidades. Este modelo obtuvo un \textit{accuracy} del 24.97\% y un puntaje F1 del 12.71\%.
+\end{itemize}
 
 \subsubsection{Red Neuronal con LSTM Unidireccional}
+El tercer conjunto de redes neuronales consiste en modelos con capas de LSTM (\textit{Long Short Term Memory}) unidireccional. Los modelos considerados se presentan en la tabla \ref{tab:em_uni_lstm}. Estos modelos incluyen la capa de vectorización y la capa de embedding.
 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline 
+        \textbf{Modelo} & \textbf{1\textsuperscript{ra} Capa} & \textbf{2\textsuperscript{da} Capa} & \textbf{3\textsuperscript{ra} Capa} & \textbf{4\textsuperscript{ta} Capa} & \textbf{5\textsuperscript{ta} Capa} \\ \hline
+        1 & LSTM, 150 & Densa, 75 & - & - & - \\ \hline
+        2 & LSTM, 300 & Densa, 75 & - & - & - \\ \hline
+        3 & LSTM, 150 & Densa 150 & Densa, 75 & Densa, 25 & - \\ \hline
+        4 & LSTM, 150 & LSTM, 150 & Densa, 150 & Densa, 75 & Densa, 25 \\ \hline
+        5 & LSTM, 300 & LSTM, 150 & Densa, 150 & Densa, 75 & Densa, 25 \\ \hline
+    \end{tabular}
+    \caption{Arquitecturas evaluadas para redes neuronales con capas de LSTM unidireccional.}
+    \label{tab:em_uni_lstm}
+\end{table}
 
+Los resultados de los modelos de redes neuronales con LSTM unidireccional se presentan con las métricas de exactitud (\textit{accuracy}), precisión (\textit{precision}) y exhaustividad (\textit{recall}). Con el fin de tener una mejor noción respecto a las métricas de precisión y \textit{recall}, se incluye la métrica de F1. Los resultados para los modelos evaluados sobre los conjuntos de entrenamiento, validación y prueba del conjunto de datos de \textit{Los Simpsons} se presentan en las tablas \ref{tab:em_results_lstm_simpsons_train}, \ref{tab:em_results_lstm_simpsons_val} y \ref{tab:em_results_lstm_simpsons_test} respectivamente. Por su parte, los resultados sobre los conjuntos de entrenamiento, validación y prueba del conjunto de datos de \textit{Friends} se presentan en las tablas \ref{tab:em_results_lstm_friends_train}, \ref{tab:em_results_lstm_friends_val} y \ref{tab:em_results_lstm_friends_test}.
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/lstm_simpsons_train.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Los Simpsons} para los modelos de redes neuronales LSTM unidireccionales.}
+    \label{tab:em_results_lstm_simpsons_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/lstm_simpsons_val.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Los Simpsons} para los modelos de redes neuronales LSTM unidreccionales.}
+    \label{tab:em_results_lstm_simpsons_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/lstm_simpsons_test.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} para los modelos de redes neuronales LSTM unidireccionales.}
+    \label{tab:em_results_lstm_simpsons_test}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/lstm_friends_train.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Friends} para los modelos de redes neuronales LSTM unidireccionales.}
+    \label{tab:em_results_lstm_friends_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/lstm_friends_val.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Friends} para los modelos de redes neuronales LSTM unidireccionales.}
+    \label{tab:em_results_lstm_friends_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/lstm_friends_test.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} para los modelos de redes neuronales LSTM unidireccionales.}
+    \label{tab:em_results_lstm_friends_test}
+\end{table}
+
+A partir de los resultados obtenidos se puede establecer que los mejores modelos de redes completamente conectadas para los conjuntos de datos de \textit{Los Simpsons} y \textit{Friends} son los siguientes:
+\begin{itemize}
+    \item Para \textit{Los Simpsons} un modelo de una capa LSTM unidireccional con 150 unidades, una capa densa con 150 unidades y una capa densa de 25 unidades. Este modelo obtuvo un \textit{accuracy} del 51.43\% y un puntaje F1 del 44.72\%.
+    \item Para \textit{Friends} un modelo de una capa LSTM unidireccional de 150 unidades y una capa densa con 75 unidades. Este modelo obtuvo un \textit{accuracy} del 28.08\% y un puntaje F1 del 15.69\%.
+\end{itemize}
 
 \subsubsection{Red Neuronal con LSTM Bidireccional}
+El cuarto conjunto de redes neuronales consiste en redes neuronales con capas de LSTM bidireccionales. Los modelos que se tienen en cuenta para este conjunto se presentan en la tabla \ref{tab:em_bi_lstm} e incluyen la capa de vectorización y la capa de embedding. 
 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline 
+        \textbf{Modelo} & \textbf{1\textsuperscript{ra} Capa} & \textbf{2\textsuperscript{da} Capa} & \textbf{3\textsuperscript{ra} Capa} & \textbf{4\textsuperscript{ta} Capa} & \textbf{5\textsuperscript{ta} Capa} \\ \hline
+        1 & BI\_LSTM, 150 & Densa, 75 & - & - & - \\ \hline
+        2 & BI\_LSTM, 300 & Densa, 75 & - & - & - \\ \hline
+        3 & BI\_LSTM, 150 & Densa 150 & Densa, 75 & Densa, 25 & - \\ \hline
+        4 & BI\_LSTM, 150 & BI\_LSTM, 150 & Densa, 150 & Densa, 75 & Densa, 25 \\ \hline
+        5 & BI\_LSTM, 300 & BI\_LSTM, 150 & Densa, 150 & Densa, 75 & Densa, 25 \\ \hline
+    \end{tabular}
+    \caption{Arquitecturas evaluadas para redes neuronales con capas de LSTM bidireccional.}
+    \label{tab:em_bi_lstm}
+\end{table}
+
+Los resultados de los modelos de redes neuronales con LSTM bidireccional se presentan con las métricas de exactitud (\textit{accuracy}), precisión (\textit{precision}) y exhaustividad (\textit{recall}). Con el fin de tener una mejor noción respecto a las métricas de precisión y \textit{recall}, se incluye la métrica de F1. Los resultados para los modelos evaluados sobre los conjuntos de entrenamiento, validación y prueba del conjunto de datos de \textit{Los Simpsons} se presentan en las tablas \ref{tab:em_results_bilstm_simpsons_train}, \ref{tab:em_results_bilstm_simpsons_val} y \ref{tab:em_results_bilstm_simpsons_test} respectivamente. Por su parte, los resultados sobre los conjuntos de entrenamiento, validación y prueba del conjunto de datos de \textit{Friends} se presentan en las tablas \ref{tab:em_results_bilstm_friends_train}, \ref{tab:em_results_bilstm_friends_val} y \ref{tab:em_results_bilstm_friends_test}.
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/bilstm_simpsons_train.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Los Simpsons} para los modelos de redes neuronales LSTM bidireccionales.}
+    \label{tab:em_results_bilstm_simpsons_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/bilstm_simpsons_val.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Los Simpsons} para los modelos de redes neuronales LSTM bidreccionales.}
+    \label{tab:em_results_bilstm_simpsons_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/bilstm_simpsons_test.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} para los modelos de redes neuronales LSTM bidireccionales.}
+    \label{tab:em_results_bilstm_simpsons_test}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/bilstm_friends_train.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Friends} para los modelos de redes neuronales LSTM bidireccionales.}
+    \label{tab:em_results_bilstm_friends_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/bilstm_friends_val.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Friends} para los modelos de redes neuronales LSTM bidireccionales.}
+    \label{tab:em_results_bilstm_friends_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/bilstm_friends_test.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} para los modelos de redes neuronales LSTM bidireccionales.}
+    \label{tab:em_results_bilstm_friends_test}
+\end{table}
+
+A partir de los resultados obtenidos se puede establecer que los mejores modelos de redes completamente conectadas para los conjuntos de datos de \textit{Los Simpsons} y \textit{Friends} son los siguientes:
+\begin{itemize}
+    \item Para \textit{Los Simpsons} un modelo de una capa LSTM bidireccional con 150 unidades y una capa densa de 75 unidades. Este modelo obtuvo un \textit{accuracy} del 51.49\% y un puntaje F1 del 45.51\%.
+    \item Para \textit{Friends} un modelo de una capa LSTM bidireccional de 300 unidades y una capa densa con 75 unidades. Este modelo obtuvo un \textit{accuracy} del 29.17\% y un puntaje F1 del 15.07\%.
+\end{itemize}
 
 \subsubsection{Red Neuronal con GRU}
+El quinto conjunto de modelos presentan redes neuronales con capas de GRU (\textit{Gated Recurrent Unit}). Los modelos usados para este tipo de arquitectura se presentan en la tabla \ref{tab:em_gru}. Al igual que en los anteriores conjuntos de redes neuronales, estos modelos incluyen sus capas de vectorización y de embedding.
 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline 
+        \textbf{Modelo} & \textbf{1\textsuperscript{ra} Capa} & \textbf{2\textsuperscript{da} Capa} & \textbf{3\textsuperscript{ra} Capa} & \textbf{4\textsuperscript{ta} Capa} & \textbf{5\textsuperscript{ta} Capa} \\ \hline
+        1 & GRU, 150 & Densa, 75 & - & - & - \\ \hline
+        2 & GRU, 300 & Densa, 75 & - & - & - \\ \hline
+        3 & GRU, 150 & Densa 150 & Densa, 75 & Densa, 25 & - \\ \hline
+        4 & GRU, 150 & GRU, 150 & Densa, 150 & Densa, 75 & Densa, 25 \\ \hline
+        5 & GRU, 300 & GRU, 150 & Densa, 150 & Densa, 75 & Densa, 25 \\ \hline
+    \end{tabular}
+    \caption{Arquitecturas evaluadas para redes neuronales con capas de GRU.}
+    \label{tab:em_gru}
+\end{table}
+
+Los resultados de los modelos de redes neuronales con GRU se presentan con las métricas de exactitud (\textit{accuracy}), precisión (\textit{precision}) y exhaustividad (\textit{recall}). Con el fin de tener una mejor noción respecto a las métricas de precisión y \textit{recall}, se incluye la métrica de F1. Los resultados para los modelos evaluados sobre los conjuntos de entrenamiento, validación y prueba del conjunto de datos de \textit{Los Simpsons} se presentan en las tablas \ref{tab:em_results_gru_simpsons_train}, \ref{tab:em_results_gru_simpsons_val} y \ref{tab:em_results_gru_simpsons_test} respectivamente. Por su parte, los resultados sobre los conjuntos de entrenamiento, validación y prueba del conjunto de datos de \textit{Friends} se presentan en las tablas \ref{tab:em_results_gru_friends_train}, \ref{tab:em_results_gru_friends_val} y \ref{tab:em_results_gru_friends_test}.
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/gru_simpsons_train.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Los Simpsons} para los modelos de redes neuronales GRU.}
+    \label{tab:em_results_gru_simpsons_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/gru_simpsons_val.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Los Simpsons} para los modelos de redes neuronales GRU.}
+    \label{tab:em_results_gru_simpsons_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/gru_simpsons_test.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} para los modelos de redes neuronales GRU.}
+    \label{tab:em_results_gru_simpsons_test}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/gru_friends_train.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Friends} para los modelos de redes neuronales GRU.}
+    \label{tab:em_results_gru_friends_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/gru_friends_val.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Friends} para los modelos de redes neuronales GRU.}
+    \label{tab:em_results_gru_friends_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/gru_friends_test.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} para los modelos de redes neuronales GRU.}
+    \label{tab:em_results_gru_friends_test}
+\end{table}
+
+A partir de los resultados obtenidos se puede establecer que los mejores modelos de redes completamente conectadas para los conjuntos de datos de \textit{Los Simpsons} y \textit{Friends} son los siguientes:
+\begin{itemize}
+    \item Para \textit{Los Simpsons} un modelo de una capa GRU con 300 unidades y una capa densa de 75 unidades. Este modelo obtuvo un \textit{accuracy} del 51.36\% y un puntaje F1 del 43.81\%.
+    \item Para \textit{Friends} un modelo de una capa GRU de 300 unidades, una capa GRU de 150 unidades, una capa densa de 150 unidades, una capa densa de 75 y una capa densa con 25 unidades. Este modelo obtuvo un \textit{accuracy} del 26.94\% y un puntaje F1 del 12.66\%.
+\end{itemize}
+
+\subsubsection{Búsqueda Profunda del Mejor Modelo}
+Considerando que los mejores resultados corresponden a las arquitecturas con LSTM bidireccional, y primando la baja complejidad de los modelos sobre ganancias marginales, se realiza una búsqueda detallada del mejor modelo. Para esta búsqueda se consideran modelos con una capa de LSTM bidireccional y una capa densa, además de las capas de vectorización y embedding. Los modelos considerados se presentan en la tabla \ref{tab:em_bilstm_deep}. 
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline 
+        \textbf{Modelo} & \textbf{Capa Recurrente} & \textbf{Capa Densa} \\ \hline
+        1 & BI\_LSTM, 25 & Densa, 15 \\ \hline
+        2 & BI\_LSTM, 50 & Densa, 27 \\ \hline
+        3 & BI\_LSTM, 75 & Densa, 40 \\ \hline
+        4 & BI\_LSTM, 150 & Densa, 77 \\ \hline
+        5 & BI\_LSTM, 300 & Densa, 152 \\ \hline
+    \end{tabular}
+    \caption{Arquitecturas evaluadas para redes neuronales con capas LSTM bidireccional.}
+    \label{tab:em_bilstm_deep}
+\end{table}
+
+Los resultados de los modelos de redes neuronales con LSTM bidireccional se presentan con las métricas de exactitud (\textit{accuracy}), precisión (\textit{precision}) y exhaustividad (\textit{recall}). Con el fin de tener una mejor noción respecto a las métricas de precisión y \textit{recall}, se incluye la métrica de F1. Los resultados para los modelos evaluados sobre los conjuntos de entrenamiento, validación y prueba del conjunto de datos de \textit{Los Simpsons} se presentan en las tablas \ref{tab:em_results_bilstm_deep_simpsons_train}, \ref{tab:em_results_bilstm_deep_simpsons_val} y \ref{tab:em_results_bilstm_deep_simpsons_test} respectivamente. Por su parte, los resultados sobre los conjuntos de entrenamiento, validación y prueba del conjunto de datos de \textit{Friends} se presentan en las tablas \ref{tab:em_results_bilstm_deep_friends_train}, \ref{tab:em_results_bilstm_deep_friends_val} y \ref{tab:em_results_bilstm_deep_friends_test}.
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/gru_simpsons_train.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Los Simpsons} para los modelos de redes neuronales GRU.}
+    \label{tab:em_results_bilstm_deep_simpsons_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/gru_simpsons_val.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Los Simpsons} para los modelos de redes neuronales GRU.}
+    \label{tab:em_results_bilstm_deep_simpsons_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/gru_simpsons_test.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} para los modelos de redes neuronales GRU.}
+    \label{tab:em_results_bilstm_deep_simpsons_test}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/gru_friends_train.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Friends} para los modelos de redes neuronales GRU.}
+    \label{tab:em_results_bilstm_deep_friends_train}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/gru_friends_val.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Friends} para los modelos de redes neuronales GRU.}
+    \label{tab:em_results_bilstm_deep_friends_val}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|c|},
+    table head=\hline \textbf{Modelo} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline
+    ]%
+    {data/em_models/gru_friends_test.csv}%
+    {model=\model, accuracy=\acc, precision=\prec, recall=\rec, F1=\fone}
+    {\model & \acc & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} para los modelos de redes neuronales GRU.}
+    \label{tab:em_results_bilstm_deep_friends_test}
+\end{table}
 
 \subsubsection{Red Neuronal con Diferente Vectorización}
+El último conjunto de modelos considera una variación en el tipo de vectorización que se está llevando a cabo. Hasta este conjunto de modelos, la vectorización que se estaba utilizando corresponde al modo de salida (\textit{output\_mode}) de números enteros (\textit{int}). 
