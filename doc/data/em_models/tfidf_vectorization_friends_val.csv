@@ -1,0 +1,2 @@
+name,model,accuracy,precision,recall,F1
+tfidf_vectorization,6,0.2936,0.5009,0.0792,0.1367
