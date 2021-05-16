@@ -92,6 +92,7 @@ La tabla \ref{tab:em_simpsons_global} presenta los resultados de los tipos de mo
     \label{tab:em_simpsons_global}
 \end{table}
 
+A continuación se presentan resultados detallados ppara el mejor modelo de clasificación sobre el conjunto de datos de \textit{Los Simpsons}: el modelo con capas LSTM bidireccionales. La tabla \ref{tab:em_simpsons_train} y la figura \ref{fig:em_simpsons_confusion_train} presentan las métricas por clase y la matriz de confusión para la división de entrenamiento del conjunto de datos de \textit{Los Simpsons}. De la tabla y de la figura se puede notar que el modelo ha aprendido a discriminar los personajes dado que se tienen métricas elevadas para todos los personajes. En la figura \ref{fig:em_simpsons_confusion_train} se evidencia cómo la diagonal presenta valores elevados, lo cual representa que se realiza apropiadamente la clasificación.
 
 \begin{table}[H]
     \centering
@@ -108,6 +109,14 @@ La tabla \ref{tab:em_simpsons_global} presenta los resultados de los tipos de mo
     \label{tab:em_simpsons_train}
 \end{table}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics{doc/images/simpsons_train_confusion.pdf}
+    \caption{Matriz de confusión para el mejor modelo de clasificación sobre el conjunto de datos de entrenamiento de \textit{Los Simpsons}.}
+    \label{fig:em_simpsons_confusion_train}
+\end{figure}
+
+En la tabla \ref{tab:em_simpsons_val} se presentan las métricas de evaluación para la división de validación sobre el conjunto de datos de \textit{Los Simpsons}. Por su parte, en la figura \ref{fig:em_simpsons_confusion_val} se presenta la matriz de confusión para la división de validación. Es importante recalcar que la matriz de confusión sigue demostrando que la clasificación se realiza apropiadamente. Esto no significa que carezca de errores, o que tenga un rendimiento alto, sino que demuestra que es capaz de extraer y utilizar la información del conjunto de datos para realizar la clasificación.
 
 \begin{table}[H]
     \centering
@@ -121,9 +130,17 @@ La tabla \ref{tab:em_simpsons_global} presenta los resultados de los tipos de mo
     {class=\class, precision=\prec, recall=\rec, F1=\fone}
     {\class & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de validación de \textit{Los Simpsons} discriminadas por clase.}
-    \label{tab:em_simpsons_train}
+    \label{tab:em_simpsons_val}
 \end{table}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics{doc/images/simpsons_val_confusion.pdf}
+    \caption{Matriz de confusión para el mejor modelo de clasificación sobre el conjunto de datos de validación de \textit{Los Simpsons}.}
+    \label{fig:em_simpsons_confusion_val}
+\end{figure}
+
+Finalmente, la división de prueba permite confirmar que el modelo logra realizar la clasificación apropiada. Esto se puede establecer a partir de las métricas de la tabla \ref{tab:em_simpsons_test} y la matriz de confusión de la figura \ref{fig:em_simpsons_confusion_test}.
 
 \begin{table}[H]
     \centering
@@ -137,8 +154,15 @@ La tabla \ref{tab:em_simpsons_global} presenta los resultados de los tipos de mo
     {class=\class, precision=\prec, recall=\rec, F1=\fone}
     {\class & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} discriminadas por clase.}
-    \label{tab:em_simpsons_train}
+    \label{tab:em_simpsons_test}
 \end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{doc/images/simpsons_test_confusion.pdf}
+    \caption{Matriz de confusión para el mejor modelo de clasificación sobre el conjunto de datos de prueba de \textit{Los Simpsons}.}
+    \label{fig:em_simpsons_confusion_test}
+\end{figure}
 
 
 \subsubsection{Conclusiones}
@@ -218,7 +242,6 @@ Para análisis posteriores, se extrae el mejor modelo con base en el f1 score. C
 \end{itemize}
 
 
-
 \subsubsection{Modelos con embedding dentro de la red}
 La tabla \ref{tab:em_friends_global} presenta los resultados de los tipos de modelos considerados para el problema de clasificación del conjunto de datos de \textit{Friends}. Los resultados de la tabla \ref{tab:em_friends_global} provienen de la evaluación del conjunto de prueba sobre el mejor modelo de cada uno de los tipos que fueron puestos a prueba. En términos generales se puede decir que los modelos logran captar suficiente información como para realizar una clasificación dado que su \textit{accuracy} es mayor del 16.33\% esperado en un clasificador completamente aleatorio. Por otra parte, se tienen los valores de \textit{precision} y \textit{recall} que se combinan en la puntuación F1. Para la \textit{precision} se puede notar que supera el 40\% para todos los tipos de modelos, lo cual indica que estos tienden a presentar un mayor número de falsos positivos. Sin embargo, el \textit{recall}, que en ningún caso supera el 10\%, indica que los modelos tienden fuertemente a presentar falsos negativos.
 
@@ -237,6 +260,8 @@ La tabla \ref{tab:em_friends_global} presenta los resultados de los tipos de mod
     \label{tab:em_friends_global}
 \end{table}
 
+A continuación se presentan resultados detallados ppara el mejor modelo de clasificación sobre el conjunto de datos de \textit{Friends} el cual corresponde a modelo con capas completamente conectadas y vectorización TF-IDF. La tabla \ref{tab:em_friends_train} presenta las métricas de evaluación discriminadas por clase para el conjunto de datos de \textit{Friends}. Por su parte, la figura \ref{fig:em_friends_confusion_train} presenta la matriz de confusión sobre el mismo conjunto de datos. De la tabla y de la figura se puede notar como el modelo se encuentra cercano a valores equivalentes a una clasificación aleatoria. Sin embargo, se puede notar que la diagonal presenta algunos valores superiores al resto.
+
 \begin{table}[H]
     \centering
     \csvreader[%
@@ -252,6 +277,14 @@ La tabla \ref{tab:em_friends_global} presenta los resultados de los tipos de mod
     \label{tab:em_friends_train}
 \end{table}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics{doc/images/friends_train_confusion.pdf}
+    \caption{Matriz de confusión para el mejor modelo de clasificación sobre el conjunto de datos de entrenamiento de \textit{Friends}.}
+    \label{fig:em_friends_confusion_train}
+\end{figure}
+
+Por su parte, la tabla \ref{tab:em_friends_val} presenta las métricas sobre el conjunto de validación de \textit{Friends}. La figura \ref{tab:em_friends_val} presenta la matriz de confusión para este conjunto de datos. De forma similar al conjunto de validación, los valores indican que se está cerca al umbral de aleatoriedad a la hora de realizar la selección. 
 
 \begin{table}[H]
     \centering
@@ -265,9 +298,17 @@ La tabla \ref{tab:em_friends_global} presenta los resultados de los tipos de mod
     {class=\class, precision=\prec, recall=\rec, F1=\fone}
     {\class & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de validación de \textit{Friends} discriminadas por clase.}
-    \label{tab:em_friends_train}
+    \label{tab:em_friends_val}
 \end{table}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics{doc/images/friends_val_confusion.pdf}
+    \caption{Matriz de confusión para el mejor modelo de clasificación sobre el conjunto de datos de validación de \textit{Friends}.}
+    \label{fig:em_friends_confusion_train}
+\end{figure}
+
+Finalmente, la tabla \ref{tab:em_friends_test} y la figura \ref{fig:em_friends_confusion_test} presentan el mismo comportamiento descrito anteriormente sobre el conjunto de datos de prueba. De esta manera se puede concluir que el conjunto de datos de \textit{Friends} no contiene la información suficiente para realizar una clasificación apropiada de los diálogos de los personajes.
 
 \begin{table}[H]
     \centering
@@ -281,8 +322,15 @@ La tabla \ref{tab:em_friends_global} presenta los resultados de los tipos de mod
     {class=\class, precision=\prec, recall=\rec, F1=\fone}
     {\class & \prec & \rec & \fone}
     \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} discriminadas por clase.}
-    \label{tab:em_friends_train}
+    \label{tab:em_friends_test}
 \end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{doc/images/friends_test_confusion.pdf}
+    \caption{Matriz de confusión para el mejor modelo de clasificación sobre el conjunto de datos de prueba de \textit{Friends}.}
+    \label{fig:em_friends_confusion_test}
+\end{figure}
 
 
 \subsubsection{Conclusiones}
