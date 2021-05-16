@@ -93,6 +93,21 @@ La tabla \ref{tab:em_simpsons_global} presenta los resultados de los tipos de mo
 \end{table}
 
 
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|},
+    table head=\hline \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/results/simpsons_train.csv}%
+    {class=\class, precision=\prec, recall=\rec, F1=\fone}
+    {\class & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Los Simpsons} para los mejores modelos de cada tipo.}
+    \label{tab:em_simpsons_train}
+\end{table}
+
 
 \subsubsection{Conclusiones}
 
