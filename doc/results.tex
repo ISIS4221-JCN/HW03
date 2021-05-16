@@ -143,8 +143,8 @@ La tabla \ref{tab:em_simpsons_global} presenta los resultados de los tipos de mo
 
 \subsubsection{Conclusiones}
 
-\subsection{Friends dataset}
 
+\subsection{Friends dataset}
 Para el caso de Friends, los modelos a implementar son exactamente los mismos. En este caso, cabe resaltar que al ser mayor cantidad de clases, se espera un resultado con desempeño más bajo. Los personajes principales en este caso son Mónica, Joey, Chandler, Phoebe, Ross y Rachel, 0, 1, 2, 3, 4, 5 respectivamente. A continuación, se muestra en consolidado de los resultados.\\
 
 \subsubsection{Modelos con embedding personalizado}
@@ -237,6 +237,52 @@ La tabla \ref{tab:em_friends_global} presenta los resultados de los tipos de mod
     \label{tab:em_friends_global}
 \end{table}
 
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|},
+    table head=\hline \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/results/friends_train.csv}%
+    {class=\class, precision=\prec, recall=\rec, F1=\fone}
+    {\class & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de entrenamiento de \textit{Friends} discriminadas por clase.}
+    \label{tab:em_friends_train}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|},
+    table head=\hline \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/results/friends_val.csv}%
+    {class=\class, precision=\prec, recall=\rec, F1=\fone}
+    {\class & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de validación de \textit{Friends} discriminadas por clase.}
+    \label{tab:em_friends_train}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \csvreader[%
+    tabular={|c|c|c|c|},
+    table head=\hline \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\ \hline,
+    late after line=\\ \hline,
+    respect underscore = true
+    ]%
+    {data/results/friends_test.csv}%
+    {class=\class, precision=\prec, recall=\rec, F1=\fone}
+    {\class & \prec & \rec & \fone}
+    \caption{Métricas de evaluación sobre datos de prueba de \textit{Friends} discriminadas por clase.}
+    \label{tab:em_friends_train}
+\end{table}
 
 
 \subsubsection{Conclusiones}
